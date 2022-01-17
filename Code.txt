@@ -1,0 +1,29 @@
+int led_pin = 13;
+int ledState = LOW;
+int prevmillis = 0;
+int currmillis;
+
+void setup()
+{
+  Serial.begin(9600);
+  pinMode(led_pin, OUTPUT);
+}
+
+void loop()
+{
+  currmillis = millis();
+  if(currmillis - prevmillis >= 200)
+  {
+    prevmillis = currmillis;
+    if(ledState == LOW)
+    {
+      ledState = HIGH;
+    }
+    else
+    {
+      ledState = LOW;
+    }
+    digitalWrite(led_pin, ledState);
+  }
+  Serial.println(currmillis);
+}
